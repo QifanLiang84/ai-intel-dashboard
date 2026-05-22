@@ -2,6 +2,7 @@
 
 import json
 import os
+import subprocess
 import sys
 from datetime import datetime
 from difflib import SequenceMatcher
@@ -222,9 +223,44 @@ def run_pipeline():
     from email_push import send_daily_email
     send_daily_email(output)
 
+    # 12. 自动推送到GitHub（如果配置了git remote）
+    _git_push_if_configured()
+
     print("\n" + "=" * 50)
     print("Pipeline completed!")
     print(f"Total news: {len(all_news)}, Keywords: {len(keywords)}, Sectors: {sum(1 for v in by_sector.values() if v)}")
+
+
+def _git_push_if_configured():
+    """爬虫完成后自动git push，触发GitHub Pages部署"""
+    project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    try:
+        result = subprocess.run(
+            ["git", "remote"],
+            cwd=project_dir,
+            capture_output=True, text=True, timeout=10
+        )
+        if "origin" not in result.stdout:
+            return
+        print("[GIT] Pushing data to GitHub...")
+        subprocess.run(["git", "add", "site/data/", "AI Investment Daily Brief.html"],
+                       cwd=project_dir, capture_output=True, timeout=30)
+        result = subprocess.run(
+            ["git", "diff", "--staged", "--quiet"],
+            cwd=project_dir, capture_output=True, timeout=10
+        )
+        if result.returncode != 0:
+            today = datetime.now().strftime("%Y-%m-%d")
+            subprocess.run(
+                ["git", "commit", "-m", f"📊 Update daily intel - {today}"],
+                cwd=project_dir, capture_output=True, timeout=30
+            )
+            subprocess.run(["git", "push"], cwd=project_dir, capture_output=True, timeout=60)
+            print("[GIT] Pushed! GitHub Pages will auto-deploy.")
+        else:
+            print("[GIT] No changes to push.")
+    except Exception as e:
+        print(f"[GIT] Push skipped: {e}")
 
 
 def _build_standalone_html(output: dict):
