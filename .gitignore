@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Config (contains API keys)
+scraper/config.py
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Data is tracked for GitHub Pages deployment
+# site/data/latest.json and site/data/history/*.json are committed by GitHub Actions

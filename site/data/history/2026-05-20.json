@@ -1,0 +1,276 @@
+{
+  "date": "2026-05-20",
+  "updated_at": "2026-05-20 16:08:10",
+  "daily_summary": "AI摘要未生成（API未配置）",
+  "investment_insight": "",
+  "sector_summaries": {
+    "computing": "",
+    "ai_app": "",
+    "physical_ai": ""
+  },
+  "key_events": [],
+  "keywords": [
+    {
+      "word": "算力",
+      "sector": "computing",
+      "count": 4,
+      "weight": 4,
+      "trend": "stable"
+    },
+    {
+      "word": "机器人",
+      "sector": "physical_ai",
+      "count": 2,
+      "weight": 2,
+      "trend": "stable"
+    },
+    {
+      "word": "人形机器人",
+      "sector": "physical_ai",
+      "count": 1,
+      "weight": 1,
+      "trend": "stable"
+    },
+    {
+      "word": "GPU",
+      "sector": "computing",
+      "count": 1,
+      "weight": 1,
+      "trend": "stable"
+    },
+    {
+      "word": "自主可控",
+      "sector": "computing",
+      "count": 1,
+      "weight": 1,
+      "trend": "stable"
+    }
+  ],
+  "news": {
+    "computing": [
+      {
+        "title": "段永平重估英伟达",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817262959559814",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "computing"
+      },
+      {
+        "title": "苏姿丰，投了只卖AMD算力的AI独角兽",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817228046894209",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "computing"
+      },
+      {
+        "title": "Coding的本质=强化学习+合成数据+万卡算力？",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817098575421446",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "computing"
+      },
+      {
+        "title": "英特尔一年五倍，CPU快和GPU一样重要了？",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817078482092929",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "computing"
+      },
+      {
+        "title": "硅谷深陷算力荒：H200一夜涨价30%，H100抢到缺货，Karpathy也未能幸免",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3816286509106052",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "computing"
+      }
+    ],
+    "ai_app": [
+      {
+        "title": "“卡神”转投Anthropic，工作岗位是“最危险的AI”",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817196535071624",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "和AI男友聊了一个月，我发现AI在给亲密关系埋雷",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817179520393475",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "Google I/O大会释放竞争决心：搜索迎来历史性更新，AI进入一切",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817204916356229",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "即构AI伴学方案获评 “2026 AI最佳场景渗透案例”",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3816020781752068",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "最高奖励800万，海南押注AI一人公司，我们如何搭上这趟车？",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817001988989184",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "早期项目 | Chance AI获美图等数百万美元投资，用户数已达20万",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3816947890471812",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "你的屏幕和键盘，正在拖垮AI的智商",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3816870600213639",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "2026年4月中国头部AI用户行为月报",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3816876347179908",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "双原生架构，不用错AI的关键",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3816844293857545",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "计算机：三大运营商齐上线Token套餐，Token经济加速形成",
+        "source": "中邮证券",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?encode=AP202605201822486641",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      },
+      {
+        "title": "计算机行业周报：算力期货拟问世，大厂继续加码AI资本开支计算机行业“一周解码”",
+        "source": "中银证券",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?encode=AP202605201822485278",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      },
+      {
+        "title": "电子行业周报（20260511——20260515）：长鑫招股说明书更新：看好自主可控板块",
+        "source": "华源证券",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?encode=AP202605201822485097",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      },
+      {
+        "title": "计算机行业点评报告：UBER：淡季增长韧性凸显，出行+配送双引擎驱动盈利",
+        "source": "华鑫证券",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?encode=AP202605201822485071",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      },
+      {
+        "title": "计算机行业周报：AI赛道估值抬升 资本投入持续加码",
+        "source": "上海证券",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?encode=AP202605201822478432",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      }
+    ],
+    "physical_ai": [
+      {
+        "title": "扛不住了，人形机器人企业批量倒闭",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817070473184128",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "physical_ai"
+      },
+      {
+        "title": "做出百万台割草机器人后，未岚大陆CEO决定让自己变得“不重要”｜硬氪专访",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3814411349581316",
+        "date": "2026-05-20",
+        "content": "",
+        "category": "industry",
+        "sector": "physical_ai"
+      }
+    ]
+  },
+  "policy": [],
+  "research_highlights": [],
+  "company_updates": {
+    "computing": [
+      {
+        "name": "英伟达",
+        "event": "段永平重估英伟达",
+        "date": "2026-05-20",
+        "url": "https://36kr.com/p/3817262959559814",
+        "source": "36氪"
+      },
+      {
+        "name": "AMD",
+        "event": "苏姿丰，投了只卖AMD算力的AI独角兽",
+        "date": "2026-05-20",
+        "url": "https://36kr.com/p/3817228046894209",
+        "source": "36氪"
+      }
+    ],
+    "ai_app": [
+      {
+        "name": "Google",
+        "event": "Google I/O大会释放竞争决心：搜索迎来历史性更新，AI进入一切",
+        "date": "2026-05-20",
+        "url": "https://36kr.com/p/3817204916356229",
+        "source": "36氪"
+      }
+    ],
+    "physical_ai": []
+  }
+}

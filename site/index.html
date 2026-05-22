@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投资·AI产业链每日情报看板</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-left">
+                <span class="logo">📊</span>
+                <div>
+                    <h1 class="header-title">投资·AI产业链每日情报</h1>
+                    <p class="header-sub" id="headerDate">加载中...</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="btn-refresh" id="btnRefresh" title="刷新数据">🔄 刷新数据</button>
+                <button class="btn-history" id="btnHistory" title="历史回顾">📅 历史回顾</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- 每日摘要卡 -->
+        <section class="card summary-card">
+            <div class="card-header">
+                <h2>🤖 AI每日摘要</h2>
+                <span class="card-badge">Claude 生成</span>
+            </div>
+            <div class="summary-content" id="dailySummary">
+                <p class="summary-text">加载中...</p>
+            </div>
+            <div class="investment-insight" id="investmentInsight" style="display:none;">
+                <h3>💡 投资建议</h3>
+                <p id="insightText"></p>
+            </div>
+            <div class="key-events" id="keyEvents" style="display:none;">
+                <h3>🔥 关键事件</h3>
+                <ul id="eventsList"></ul>
+            </div>
+        </section>
+
+        <!-- 赛道热度矩阵 -->
+        <section class="card">
+            <div class="card-header">
+                <h2>📈 赛道热度矩阵</h2>
+            </div>
+            <div class="sector-grid" id="sectorGrid">
+                <div class="sector-card" data-sector="computing">
+                    <div class="sector-icon">⚡</div>
+                    <div class="sector-name">算力与国产替代</div>
+                    <div class="sector-sub">GPU/芯片/服务器/半导体/信创/EDA</div>
+                    <div class="sector-count" id="count-computing">-</div>
+                    <div class="sector-bar"><div class="sector-bar-fill" id="bar-computing"></div></div>
+                </div>
+                <div class="sector-card" data-sector="ai_app">
+                    <div class="sector-icon">🧠</div>
+                    <div class="sector-name">AI应用</div>
+                    <div class="sector-sub">大模型/Agent/低空经济/军工AI</div>
+                    <div class="sector-count" id="count-ai_app">-</div>
+                    <div class="sector-bar"><div class="sector-bar-fill" id="bar-ai_app"></div></div>
+                </div>
+                <div class="sector-card" data-sector="physical_ai">
+                    <div class="sector-icon">🤖</div>
+                    <div class="sector-name">物理AI</div>
+                    <div class="sector-sub">机器人/具身智能/自动驾驶</div>
+                    <div class="sector-count" id="count-physical_ai">-</div>
+                    <div class="sector-bar"><div class="sector-bar-fill" id="bar-physical_ai"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关键词热度 -->
+        <section class="card">
+            <div class="card-header">
+                <h2>🏷️ 关键词热度</h2>
+            </div>
+            <div class="keywords-container" id="keywordsContainer">
+                加载中...
+            </div>
+        </section>
+
+        <!-- 新闻流 + 研报 + 公司动态 Tab区域 -->
+        <section class="card main-content">
+            <div class="tabs">
+                <button class="tab active" data-tab="news">📰 新闻流</button>
+                <button class="tab" data-tab="policy">📋 政策动向</button>
+                <button class="tab" data-tab="research">📄 研报解读</button>
+                <button class="tab" data-tab="company">🏢 公司动态</button>
+                <button class="tab" data-tab="funding">💰 投融资</button>
+            </div>
+
+            <!-- 新闻流 -->
+            <div class="tab-content active" id="tab-news">
+                <div class="news-sectors-tabs" id="newsSectorTabs"></div>
+                <div class="news-list" id="newsList"></div>
+            </div>
+
+            <!-- 政策动向 -->
+            <div class="tab-content" id="tab-policy">
+                <div class="news-list" id="policyList"></div>
+            </div>
+
+            <!-- 研报解读 -->
+            <div class="tab-content" id="tab-research">
+                <div class="research-list" id="researchList"></div>
+            </div>
+
+            <!-- 公司动态 -->
+            <div class="tab-content" id="tab-company">
+                <div class="company-grid" id="companyGrid"></div>
+            </div>
+
+            <!-- 投融资 -->
+            <div class="tab-content" id="tab-funding">
+                <div class="news-list" id="fundingList"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 刷新状态提示 -->
+    <div class="refresh-toast" id="refreshToast" style="display:none;">
+        <span id="refreshToastText"></span>
+    </div>
+
+    <!-- 历史回顾弹窗 -->
+    <div class="modal-overlay" id="historyModal" style="display:none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>📅 历史回顾</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="historyList"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

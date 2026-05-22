@@ -1,0 +1,88 @@
+name: Daily AI Intel Scrape
+
+on:
+  schedule:
+    # 每天北京时间 8:30 (UTC 0:30)
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r scraper/requirements.txt
+
+      - name: Create config from secrets
+        run: |
+          cat > scraper/config.py << 'PYEOF'
+          CLAUDE_API_KEY = "${{ secrets.CLAUDE_API_KEY }}"
+          IFIND_API_KEY = "${{ secrets.IFIND_API_KEY }}"
+          IFIND_API_SECRET = "${{ secrets.IFIND_API_SECRET }}"
+          WIND_API_KEY = "${{ secrets.WIND_API_KEY }}"
+          WIND_API_SECRET = "${{ secrets.WIND_API_SECRET }}"
+          CHOICE_API_KEY = "${{ secrets.CHOICE_API_KEY }}"
+          CHOICE_API_SECRET = "${{ secrets.CHOICE_API_SECRET }}"
+          SMTP_HOST = "${{ secrets.SMTP_HOST }}"
+          SMTP_PORT = ${{ secrets.SMTP_PORT }}
+          SMTP_USER = "${{ secrets.SMTP_USER }}"
+          SMTP_PASSWORD = "${{ secrets.SMTP_PASSWORD }}"
+          EMAIL_FROM = "${{ secrets.EMAIL_FROM }}"
+          EMAIL_TO = []
+          REQUEST_TIMEOUT = 15
+          REQUEST_DELAY = 2
+          MAX_RETRIES = 3
+          USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+          DATA_DIR = "../site/data"
+          PYEOF
+
+      - name: Run scraper pipeline
+        run: |
+          cd scraper
+          python main.py
+
+      - name: Commit and push data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add site/data/ "AI Investment Daily Brief.html"
+          git diff --staged --quiet || git commit -m "📊 Update daily intel data - $(date +%Y-%m-%d)"
+          git push
+
+  deploy:
+    needs: scrape
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,433 @@
+{
+  "date": "2026-05-21",
+  "updated_at": "2026-05-21 13:47:25",
+  "daily_summary": "今日AI产业链情报汇总：算力与国产替代3条，AI应用28条，物理AI3条。",
+  "investment_insight": "1. 算力与国产替代赛道有动态，关注相关标的；2. AI应用赛道活跃，关注大模型商业化进展；3. 物理AI赛道有新动态，关注机器人/自动驾驶方向。",
+  "sector_summaries": {
+    "computing": "今日算力与国产替代相关新闻3条。重点关注：AI生成视频“三国杀”：Seedance领跑，可灵分拆拟IPO，阿里紧跟入局；财联社5月21日电，摩根士丹利将英伟达目标价从285美元上调至288美元。；【风口研报·公司】内存价格上涨提升扩产动力，公司约60%的收入与国内先进内存领域相关，叠加GPU需求上升带来的机会，分析师上调未来两年盈利预测",
+    "ai_app": "今日AI应用相关新闻28条。重点关注：没有AI能力的药厂，将不再被称作药厂；9亿次点击背后，AI应用的真实江湖｜2026中国AI应用全景图谱报告；义乌老板们，正在把AI接进工厂",
+    "physical_ai": "今日物理AI相关新闻3条。重点关注：“打折”卖机器人冲进前四，乐聚智能要上市了；机器人概念再度走强 模塑科技涨停；特斯拉最后一批Model S/X车型下线 工厂将转为人型机器人生产线"
+  },
+  "key_events": [
+    "AI生成视频“三国杀”：Seedance领跑，可灵分拆拟IPO，阿里紧跟入局",
+    "没有AI能力的药厂，将不再被称作药厂",
+    "“打折”卖机器人冲进前四，乐聚智能要上市了"
+  ],
+  "keywords": [
+    {
+      "word": "人形机器人",
+      "sector": "physical_ai",
+      "count": 6,
+      "weight": 5,
+      "trend": "up"
+    },
+    {
+      "word": "AI应用",
+      "sector": "ai_app",
+      "count": 1,
+      "weight": 1,
+      "trend": "up"
+    },
+    {
+      "word": "EDA",
+      "sector": "computing",
+      "count": 1,
+      "weight": 1,
+      "trend": "stable"
+    },
+    {
+      "word": "GPU",
+      "sector": "computing",
+      "count": 1,
+      "weight": 1,
+      "trend": "up"
+    },
+    {
+      "word": "芯片",
+      "sector": "computing",
+      "count": 1,
+      "weight": 1,
+      "trend": "up"
+    },
+    {
+      "word": "大模型",
+      "sector": "ai_app",
+      "count": 1,
+      "weight": 1,
+      "trend": "up"
+    }
+  ],
+  "news": {
+    "computing": [
+      {
+        "title": "AI生成视频“三国杀”：Seedance领跑，可灵分拆拟IPO，阿里紧跟入局",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817497977455492",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "computing"
+      },
+      {
+        "title": "财联社5月21日电，摩根士丹利将英伟达目标价从285美元上调至288美元。",
+        "source": "财联社",
+        "url": "https://www.cls.cn/detail/2377722",
+        "date": "2026-05-21",
+        "content": "财联社5月21日电，摩根士丹利将英伟达目标价从285美元上调至288美元。",
+        "category": "industry",
+        "sector": "computing"
+      },
+      {
+        "title": "【风口研报·公司】内存价格上涨提升扩产动力，公司约60%的收入与国内先进内存领域相关，叠加GPU需求上升带来的机会，分析师上调未来两年盈利预测",
+        "source": "财联社",
+        "url": "https://www.cls.cn/detail/2377617",
+        "date": "2026-05-21",
+        "content": "随着长鑫存储和长江存储IPO进展提速，或分别在2026年下半年上市，国产存储产业链的关注度与日俱增。分析师看好公司凭借强大的刻蚀机产品组合，在多个先进制程芯片刻蚀和沉积设备领域占据有利地位，有望受益于国内内存市占率提升。",
+        "category": "industry",
+        "sector": "computing"
+      }
+    ],
+    "ai_app": [
+      {
+        "title": "没有AI能力的药厂，将不再被称作药厂",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818431174909961",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "9亿次点击背后，AI应用的真实江湖｜2026中国AI应用全景图谱报告",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818450346738823",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "义乌老板们，正在把AI接进工厂",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818419978765441",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "Google I/O之后，AI的参照系变了",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818402638733573",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "中国AI，不想再活在CUDA里",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818457345449989",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "楼上在骂AI，楼下在卖AI",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818382148346116",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "31家科创板AI公司集体参会：AI商业化迈入收入兑现关键期",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818410704028548",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "OpenAI落子新加坡",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818408579793801",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "6个月融25亿元，他是“字节系”最猛的AI创业者",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818285496255622",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "中国中专生3000元挑战好莱坞：一个AI时代的逆袭神话",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817660645753991",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "智谱AI开辟AutoClaw新入口，推出APP版本",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817698479866757",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "解决一个“小bug”，这款AI社交产品MAU半年上涨6倍？",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817670526616455",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "爱优腾哔招聘解读：四家对AI的理解正在分化",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817716062192775",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "Google新AI「付费墙」实测：对「白嫖党」友好，但山猪没得细糠吃",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817688431255553",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "什么叫AI原生组织？如何打造AI原生组织？",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818273462387592",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "时薪800、学历硕士起：大厂热抢的AI数据“炼金师”到底在做什么？",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817645558694788",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "嗜血的AI",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817538261681030",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "苹果转身，三星入局：AI眼镜为何成为巨头必争之地？",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817523788914952",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "AI光通信狂欢：有人单季赚 57 亿，有人亏 62 亿破产",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3817461821916038",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "山东：布局建设“中国算谷”人工智能公共服务平台",
+        "source": "财联社",
+        "url": "https://www.cls.cn/detail/2377709",
+        "date": "2026-05-21",
+        "content": "【山东：布局建设“中国算谷”人工智能公共服务平台】财联社5月21日电，山东省工业和信息化厅等多部门印发《山东省“人工智能+制造”行动方案（2026-2028年）》。其中指出，提升平台载体能级。布局建设“中国算谷”人工智能公共服务平台，争创制造领域国家人工智能应用中试基地，培育一批“万兆+AI”园区、齐鲁“模力空间”等载体，加速技术成果转化应用，每年打造5个左右区域级、20个左右行业级、100个左右企业级人工智能能力中心。打造一批省级人工智能创新实验室、产业创新中心等高能级研发平台，对建成后通过验收的人工智能领域省级实验室和重点实验室按规定给予支持。",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "山东：到2028年全省人工智能产业营业收入突破2500亿元、占全国比重超过10%",
+        "source": "财联社",
+        "url": "https://www.cls.cn/detail/2377698",
+        "date": "2026-05-21",
+        "content": "【山东：到2028年全省人工智能产业营业收入突破2500亿元、占全国比重超过10%】财联社5月21日电，山东省工业和信息化厅等多部门印发《山东省“人工智能+制造”行动方案（2026-2028年）》。到2028年，全省人工智能产业营业收入突破2500亿元、占全国比重超过10%，具有一定国际知名度的工业通用大模型研发取得突破，特色化、全覆盖的行业大模型体系基本形成，打造200个左右高水平、协同化的工业智能体；建成10个左右“人工智能+制造”先锋应用，培育50家以上创新载体，形成双核引领、多点支撑、全域协同的发展格局；围绕41个工业行业建成一批行业级人工智能能力中心，推广100个左右高价值应用场景；",
+        "category": "industry",
+        "sector": "ai_app"
+      },
+      {
+        "title": "2026年机场行业分析（2026年5月）",
+        "source": "联合资信评估",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?infocode=AP202605211822526369",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      },
+      {
+        "title": "工程机械行业2025年报&2026年一季报总结：出海逻辑继续演绎，高经营质量周期利好内外需上行提速",
+        "source": "东吴证券",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?infocode=AP202605211822525917",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      },
+      {
+        "title": "计算机行业点评报告：文远知行：Q1营收同比增长58%，Robotaxi全球规模化推进",
+        "source": "华鑫证券",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?infocode=AP202605211822524032",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      },
+      {
+        "title": "计算机行业点评报告：微软（MSFT.O）：AI基建进入产出期，云端协同驱动业绩增长",
+        "source": "华鑫证券",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?infocode=AP202605211822524030",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      },
+      {
+        "title": "计算机行业点评报告：TSLA.O：Q1盈利修复现金流，AI与机器人战略驱动长期增长",
+        "source": "华鑫证券",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?infocode=AP202605211822520757",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      },
+      {
+        "title": "计算机行业点评报告：多邻国（DUOL.O）：Q1盈利指标表现出色，战略转型致预订额指引放缓",
+        "source": "华鑫证券",
+        "url": "https://data.eastmoney.com/report/zw_industry.jshtml?infocode=AP202605211822520737",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "research",
+        "sector": "ai_app"
+      },
+      {
+        "title": "三个皮匠报告 - AI产业链相关研报",
+        "source": "三个皮匠报告",
+        "url": "https://www.sgpjbg.com/search.html?kw=AI",
+        "date": "2026-05-21",
+        "content": "点击查看三个皮匠报告网站上的AI相关研报",
+        "category": "research",
+        "sector": "ai_app"
+      }
+    ],
+    "physical_ai": [
+      {
+        "title": "“打折”卖机器人冲进前四，乐聚智能要上市了",
+        "source": "36氪",
+        "url": "https://36kr.com/p/3818453125832712",
+        "date": "2026-05-21",
+        "content": "",
+        "category": "industry",
+        "sector": "physical_ai"
+      },
+      {
+        "title": "机器人概念再度走强 模塑科技涨停",
+        "source": "财联社",
+        "url": "https://www.cls.cn/detail/2377724",
+        "date": "2026-05-21",
+        "content": "【机器人概念再度走强 模塑科技涨停】财联社5月21日电，午后机器人概念再度走强，模塑科技涨停，此前北特科技、埃斯顿、美湖股份涨停，昊志机电、三协电机、上纬新材、奥比中光均涨超10%。消息面上，5月21日，特斯拉公司副总裁陶琳发文称，刚刚在加州弗里蒙特工厂，马斯克和ModelS/X签名版的车主们共同见证了这两款车型的最后一次下线，这条产线将很快改造为特斯拉人形机器人的产线。",
+        "category": "industry",
+        "sector": "physical_ai"
+      },
+      {
+        "title": "特斯拉最后一批Model S/X车型下线 工厂将转为人型机器人生产线",
+        "source": "财联社",
+        "url": "https://www.cls.cn/detail/2377711",
+        "date": "2026-05-21",
+        "content": "【特斯拉最后一批Model S/X车型下线 工厂将转为人型机器人生产线】财联社5月21日电，特斯拉公司副总裁陶琳5月21日发文称，刚刚在加州弗里蒙特工厂，马斯克和ModelS/X签名版的车主们共同见证了这两款车型的最后一次下线，这条产线将很快改造为特斯拉人形机器人的产线。",
+        "category": "industry",
+        "sector": "physical_ai"
+      }
+    ]
+  },
+  "policy": [],
+  "research_highlights": [],
+  "company_updates": {
+    "computing": [
+      {
+        "name": "英伟达",
+        "event": "财联社5月21日电，摩根士丹利将英伟达目标价从285美元上调至288美元。",
+        "date": "2026-05-21",
+        "url": "https://www.cls.cn/detail/2377722",
+        "source": "财联社"
+      }
+    ],
+    "ai_app": [
+      {
+        "name": "Google",
+        "event": "Google I/O之后，AI的参照系变了",
+        "date": "2026-05-21",
+        "url": "https://36kr.com/p/3818402638733573",
+        "source": "36氪"
+      },
+      {
+        "name": "OpenAI",
+        "event": "OpenAI落子新加坡",
+        "date": "2026-05-21",
+        "url": "https://36kr.com/p/3818408579793801",
+        "source": "36氪"
+      },
+      {
+        "name": "智谱AI",
+        "event": "智谱AI开辟AutoClaw新入口，推出APP版本",
+        "date": "2026-05-21",
+        "url": "https://36kr.com/p/3817698479866757",
+        "source": "36氪"
+      },
+      {
+        "name": "Google",
+        "event": "Google新AI「付费墙」实测：对「白嫖党」友好，但山猪没得细糠吃",
+        "date": "2026-05-21",
+        "url": "https://36kr.com/p/3817688431255553",
+        "source": "36氪"
+      }
+    ],
+    "physical_ai": [
+      {
+        "name": "特斯拉",
+        "event": "机器人概念再度走强 模塑科技涨停",
+        "date": "2026-05-21",
+        "url": "https://www.cls.cn/detail/2377724",
+        "source": "财联社"
+      },
+      {
+        "name": "特斯拉",
+        "event": "特斯拉最后一批Model S/X车型下线 工厂将转为人型机器人生产线",
+        "date": "2026-05-21",
+        "url": "https://www.cls.cn/detail/2377711",
+        "source": "财联社"
+      }
+    ]
+  }
+}

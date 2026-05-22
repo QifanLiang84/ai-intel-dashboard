@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投资·AI产业链每日情报看板</title>
+    <style>
+/* ====== 投资·AI产业链每日情报看板 ====== */
+
+:root {
+    --bg-primary: #f0f4f8;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e2e8f0;
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --text-muted: #a0aec0;
+    --accent-blue: #3182ce;
+    --accent-cyan: #0891b2;
+    --accent-green: #16a34a;
+    --accent-yellow: #d97706;
+    --accent-red: #dc2626;
+    --accent-purple: #7c3aed;
+    --accent-pink: #db2777;
+    --border: #e2e8f0;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --radius: 12px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.logo { font-size: 28px; }
+.header-title { font-size: 20px; font-weight: 700; color: var(--text-primary); }
+.header-sub { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+.header-right { display: flex; gap: 8px; }
+.btn-history, .btn-refresh {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+.btn-history:hover, .btn-refresh:hover {
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+}
+.btn-refresh.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Refresh Toast */
+.refresh-toast {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-blue);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 300;
+    box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+/* Main */
+.main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Card */
+.card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.card-header h2 { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+.card-badge {
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--accent-purple);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+/* Summary */
+.summary-text {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+}
+.investment-insight, .key-events {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+.investment-insight h3, .key-events h3 {
+    font-size: 14px;
+    color: var(--accent-yellow);
+    margin-bottom: 8px;
+}
+.investment-insight p {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.7;
+}
+.key-events ul { list-style: none; padding: 0; }
+.key-events li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+.key-events li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent-cyan);
+}
+
+/* Sector Grid */
+.sector-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+}
+.sector-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+.sector-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(49, 130, 206, 0.12);
+}
+.sector-icon { font-size: 24px; margin-bottom: 8px; }
+.sector-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; color: var(--text-primary); }
+.sector-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+.sector-count { font-size: 28px; font-weight: 800; color: var(--accent-blue); }
+.sector-bar {
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+.sector-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+    transition: width 0.5s ease;
+    width: 0%;
+}
+
+/* Keywords */
+.keywords-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.keyword-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+.keyword-tag:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+.keyword-tag .trend-up { color: var(--accent-green); font-size: 11px; }
+.keyword-tag .trend-down { color: var(--accent-red); font-size: 11px; }
+.keyword-tag .trend-stable { color: var(--text-muted); font-size: 11px; }
+.keyword-weight-5 { border-color: var(--accent-blue); color: var(--accent-blue); background: rgba(49, 130, 206, 0.08); }
+.keyword-weight-4 { border-color: var(--accent-cyan); color: var(--accent-cyan); background: rgba(8, 145, 178, 0.08); }
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 4px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+    overflow-x: auto;
+}
+.tab {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 10px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.tab:hover { color: var(--text-secondary); }
+.tab.active {
+    color: var(--accent-blue);
+    border-bottom-color: var(--accent-blue);
+}
+
+/* News sector sub-tabs */
+.news-sectors-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+.news-sector-tab {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.news-sector-tab.active {
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+}
+.news-sector-tab:hover:not(.active) {
+    border-color: var(--accent-blue);
+    color: var(--text-secondary);
+}
+
+/* Tab Content */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* News List */
+.news-list { display: flex; flex-direction: column; gap: 8px; }
+.news-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+.news-item:hover {
+    border-color: var(--border);
+    background: var(--bg-tertiary);
+}
+.news-item-source {
+    font-size: 11px;
+    color: var(--accent-cyan);
+    white-space: nowrap;
+    min-width: 70px;
+    padding-top: 2px;
+    font-weight: 600;
+}
+.news-item-body { flex: 1; }
+.news-item-title {
+    font-size: 14px;
+    color: var(--text-primary);
+    text-decoration: none;
+    line-height: 1.5;
+}
+.news-item-title:hover { color: var(--accent-blue); }
+.news-item-meta {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+.news-item-sector {
+    background: rgba(49, 130, 206, 0.1);
+    color: var(--accent-blue);
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+/* Research Card */
+.research-list { display: flex; flex-direction: column; gap: 12px; }
+.research-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    transition: all 0.2s;
+}
+.research-card:hover { border-color: var(--accent-purple); }
+.research-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+.research-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex: 1;
+}
+.research-card-source {
+    font-size: 12px;
+    color: var(--accent-purple);
+    margin-left: 12px;
+    white-space: nowrap;
+    font-weight: 600;
+}
+.research-card-summary {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    padding: 10px 14px;
+    background: rgba(124, 58, 237, 0.05);
+    border-left: 3px solid var(--accent-purple);
+    border-radius: 0 6px 6px 0;
+    margin-top: 8px;
+}
+.research-card-point {
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--accent-yellow);
+    font-weight: 600;
+}
+
+/* Company Grid */
+.company-grid { display: flex; flex-direction: column; gap: 16px; }
+.company-sector-group {}
+.company-sector-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+}
+.company-events { display: flex; flex-direction: column; gap: 6px; }
+.company-event {
+    display: flex;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--bg-primary);
+    border-radius: 6px;
+    font-size: 13px;
+}
+.company-event-name {
+    color: var(--accent-cyan);
+    font-weight: 600;
+    min-width: 80px;
+}
+.company-event-text { color: var(--text-secondary); flex: 1; }
+.company-event-date { color: var(--text-muted); font-size: 12px; white-space: nowrap; }
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+}
+.modal-header h2 { font-size: 17px; color: var(--text-primary); }
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 24px;
+    cursor: pointer;
+}
+.modal-close:hover { color: var(--text-primary); }
+.modal-body { padding: 16px 20px; overflow-y: auto; }
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 4px;
+}
+.history-item:hover { background: var(--bg-primary); }
+.history-date { font-size: 14px; color: var(--text-primary); }
+.history-count { font-size: 12px; color: var(--text-muted); }
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+}
+.loading-spinner {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--bg-tertiary);
+    border-top-color: var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-inner { padding: 12px 16px; }
+    .header-title { font-size: 16px; }
+    .main { padding: 16px; }
+    .sector-grid { grid-template-columns: repeat(2, 1fr); }
+    .card { padding: 14px; }
+    .tabs { gap: 0; }
+    .tab { padding: 8px 12px; font-size: 13px; }
+    .news-item { flex-direction: column; gap: 4px; }
+    .news-item-source { min-width: auto; }
+}
+@media (max-width: 480px) {
+    .sector-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="header-left">
+                <span class="logo">📊</span>
+                <div>
+                    <h1 class="header-title">投资·AI产业链每日情报</h1>
+                    <p class="header-sub" id="headerDate">加载中...</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="btn-refresh" id="btnRefresh" title="刷新数据">🔄 刷新数据</button>
+                <button class="btn-history" id="btnHistory" title="历史回顾">📅 历史回顾</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- 每日摘要卡 -->
+        <section class="card summary-card">
+            <div class="card-header">
+                <h2>🤖 AI每日摘要</h2>
+                <span class="card-badge">Claude 生成</span>
+            </div>
+            <div class="summary-content" id="dailySummary">
+                <p class="summary-text">加载中...</p>
+            </div>
+            <div class="investment-insight" id="investmentInsight" style="display:none;">
+                <h3>💡 投资建议</h3>
+                <p id="insightText"></p>
+            </div>
+            <div class="key-events" id="keyEvents" style="display:none;">
+                <h3>🔥 关键事件</h3>
+                <ul id="eventsList"></ul>
+            </div>
+        </section>
+
+        <!-- 赛道热度矩阵 -->
+        <section class="card">
+            <div class="card-header">
+                <h2>📈 赛道热度矩阵</h2>
+            </div>
+            <div class="sector-grid" id="sectorGrid">
+                <div class="sector-card" data-sector="computing">
+                    <div class="sector-icon">⚡</div>
+                    <div class="sector-name">算力与国产替代</div>
+                    <div class="sector-sub">GPU/芯片/服务器/半导体/信创/EDA</div>
+                    <div class="sector-count" id="count-computing">-</div>
+                    <div class="sector-bar"><div class="sector-bar-fill" id="bar-computing"></div></div>
+                </div>
+                <div class="sector-card" data-sector="ai_app">
+                    <div class="sector-icon">🧠</div>
+                    <div class="sector-name">AI应用</div>
+                    <div class="sector-sub">大模型/Agent/低空经济/军工AI</div>
+                    <div class="sector-count" id="count-ai_app">-</div>
+                    <div class="sector-bar"><div class="sector-bar-fill" id="bar-ai_app"></div></div>
+                </div>
+                <div class="sector-card" data-sector="physical_ai">
+                    <div class="sector-icon">🤖</div>
+                    <div class="sector-name">物理AI</div>
+                    <div class="sector-sub">机器人/具身智能/自动驾驶</div>
+                    <div class="sector-count" id="count-physical_ai">-</div>
+                    <div class="sector-bar"><div class="sector-bar-fill" id="bar-physical_ai"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关键词热度 -->
+        <section class="card">
+            <div class="card-header">
+                <h2>🏷️ 关键词热度</h2>
+            </div>
+            <div class="keywords-container" id="keywordsContainer">
+                加载中...
+            </div>
+        </section>
+
+        <!-- 新闻流 + 研报 + 公司动态 Tab区域 -->
+        <section class="card main-content">
+            <div class="tabs">
+                <button class="tab active" data-tab="news">📰 新闻流</button>
+                <button class="tab" data-tab="policy">📋 政策动向</button>
+                <button class="tab" data-tab="research">📄 研报解读</button>
+                <button class="tab" data-tab="company">🏢 公司动态</button>
+                <button class="tab" data-tab="funding">💰 投融资</button>
+            </div>
+
+            <!-- 新闻流 -->
+            <div class="tab-content active" id="tab-news">
+                <div class="news-sectors-tabs" id="newsSectorTabs"></div>
+                <div class="news-list" id="newsList"></div>
+            </div>
+
+            <!-- 政策动向 -->
+            <div class="tab-content" id="tab-policy">
+                <div class="news-list" id="policyList"></div>
+            </div>
+
+            <!-- 研报解读 -->
+            <div class="tab-content" id="tab-research">
+                <div class="research-list" id="researchList"></div>
+            </div>
+
+            <!-- 公司动态 -->
+            <div class="tab-content" id="tab-company">
+                <div class="company-grid" id="companyGrid"></div>
+            </div>
+
+            <!-- 投融资 -->
+            <div class="tab-content" id="tab-funding">
+                <div class="news-list" id="fundingList"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 刷新状态提示 -->
+    <div class="refresh-toast" id="refreshToast" style="display:none;">
+        <span id="refreshToastText"></span>
+    </div>
+
+    <!-- 历史回顾弹窗 -->
+    <div class="modal-overlay" id="historyModal" style="display:none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>📅 历史回顾</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="historyList"></div>
+        </div>
+    </div>
+
+    <script>
+const EMBEDDED_DATA = {"date": "2026-05-22", "updated_at": "2026-05-22 10:21:49", "daily_summary": "今日AI产业链情报汇总：算力与国产替代4条，AI应用23条，物理AI5条，政策动向3条。", "investment_insight": "1. 算力与国产替代赛道有动态，关注相关标的；2. AI应用赛道活跃，关注大模型商业化进展；3. 物理AI赛道有新动态，关注机器人/自动驾驶方向。", "sector_summaries": {"computing": "今日算力与国产替代相关新闻4条。重点关注：AI服务器电源变天，ADI豪掷15亿美元押注；多只半导体ETF、中证1000ETF资金逆势净流入；财联社5月22日电，AMD首席执行官表示，现在看到的是AI不仅进入推理阶段，而且确实可以完成智能化的任务。", "ai_app": "今日AI应用相关新闻23条。重点关注：AI投毒终于有得治了，谷歌对GEO重拳出击；蒋涛：一个CTO，28天写4万行代码，AI赚钱机器出现了；中小企业用AI：没钱没人没技术，如何用起来？", "physical_ai": "今日物理AI相关新闻5条。重点关注：为了还原具身智能科研市场的全貌，我们找了多个头部高校聊聊；城市级AI服务：从试点到常态化，机器人的实景作战与规模化落地| 2026AI Partner·北京亦庄AI+产业大会；华为“1 号员工”创业，复制大疆模式造机器人"}, "key_events": ["城市级AI服务：从试点到常态化，机器人的实景作战与规模化落地| 2026AI Partner·北京亦庄AI+产业大会", "新石器NewClaw：AI一体化解决方案，零门槛当无人车指挥官| 2026AI Partner·北京亦庄AI+产业大会", "AI服务器电源变天，ADI豪掷15亿美元押注", "AI投毒终于有得治了，谷歌对GEO重拳出击", "为了还原具身智能科研市场的全貌，我们找了多个头部高校聊聊"], "keywords": [{"word": "人形机器人", "sector": "physical_ai", "count": 5, "weight": 5, "trend": "up"}, {"word": "算力", "sector": "computing", "count": 2, "weight": 2, "trend": "stable"}, {"word": "服务器", "sector": "computing", "count": 1, "weight": 1, "trend": "stable"}, {"word": "具身智能", "sector": "physical_ai", "count": 1, "weight": 1, "trend": "stable"}, {"word": "半导体", "sector": "computing", "count": 1, "weight": 1, "trend": "up"}, {"word": "液冷", "sector": "computing", "count": 1, "weight": 1, "trend": "stable"}, {"word": "IDC", "sector": "computing", "count": 1, "weight": 1, "trend": "stable"}, {"word": "低空经济", "sector": "ai_app", "count": 1, "weight": 1, "trend": "stable"}], "news": {"computing": [{"title": "AI服务器电源变天，ADI豪掷15亿美元押注", "source": "36氪", "url": "https://36kr.com/p/3819705979834505", "date": "2026-05-22", "content": "", "category": "industry", "sector": "computing"}, {"title": "多只半导体ETF、中证1000ETF资金逆势净流入", "source": "财联社", "url": "https://www.cls.cn/detail/2378679", "date": "2026-05-22", "content": "【多只半导体ETF、中证1000ETF资金逆势净流入】昨日市场行情回调之际，非货ETF单日合计净流出71.62亿元，却见半导体、中证1000等热门ETF吸引资金流入。Wind数据显示，中证1000ETF华夏单日吸金最多，净流入14.85亿元；科创半导体ETF华夏也单日净流入13.91亿元，中证1000ETF南方净流入13.06亿元。另外，中证500ETF南方，A500ETF华泰柏瑞、中证1000ETF易方达、中证A500ETF国泰等单日净流入均超过5亿元。另一方面，沪深300ETF、黄金ETF、券商ETF净流出居前，仅跟踪沪深300的ETF合计单日即流出89.22亿元。（记者 周晓雅）", "category": "industry", "sector": "computing"}, {"title": "财联社5月22日电，AMD首席执行官表示，现在看到的是AI不仅进入推理阶段，而且确实可以完成智能化的任务。", "source": "财联社", "url": "https://www.cls.cn/detail/2378665", "date": "2026-05-22", "content": "财联社5月22日电，AMD首席执行官表示，现在看到的是AI不仅进入推理阶段，而且确实可以完成智能化的任务。", "category": "industry", "sector": "computing"}, {"title": "【风口研报·行业】美国将向9家量子计算公司划拨，分析师强call这一关键赛道长期具备接近万亿级产业空间的潜力，且后发者短期难以突破头部企业", "source": "财联社", "url": "https://www.cls.cn/detail/2378657", "date": "2026-05-22", "content": "美国将向9家量子计算公司划拨20亿美元，政府将获得股权。分析师认为，量子计算已成为全球科技竞争与国家战略布局的关键赛道，技术、需求三维共振驱动产业化提速，长期具备重构算力体系与接近万亿级产业空间的潜力，看好头部企业提前布局，有望持续受益。", "category": "industry", "sector": "computing"}], "ai_app": [{"title": "AI投毒终于有得治了，谷歌对GEO重拳出击", "source": "36氪", "url": "https://36kr.com/p/3819133473378439", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "蒋涛：一个CTO，28天写4万行代码，AI赚钱机器出现了", "source": "36氪", "url": "https://36kr.com/p/3819706883461506", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "中小企业用AI：没钱没人没技术，如何用起来？", "source": "36氪", "url": "https://36kr.com/p/3819647049273476", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "拒绝“Token刷分”：别让你的公司在AI幻觉里集体“大脑萎缩”", "source": "36氪", "url": "https://36kr.com/p/3793573756394754", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "AI东风，能送长鑫上万亿市值吗？", "source": "36氪", "url": "https://36kr.com/p/3818972597142664", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "AI 错杀之后，美股软件板块短暂反弹还是彻底反转？", "source": "36氪", "url": "https://36kr.com/p/3818942804050823", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "“一人公司”火了，谁靠AI员工挣到第一桶金？", "source": "36氪", "url": "https://36kr.com/p/3818829160170633", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "断供OpenAI，Anthropic买下全球1/4开发者都在用的工具商", "source": "36氪", "url": "https://36kr.com/p/3818940869280643", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "AI助手们，骗了人不能只说“对不起”", "source": "36氪", "url": "https://36kr.com/p/3818881466844290", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "新石器NewClaw：AI一体化解决方案，零门槛当无人车指挥官| 2026AI Partner·北京亦庄AI+产业大会", "source": "36氪", "url": "https://36kr.com/p/3818927367046018", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "AI首次证明数学核心猜想：80年的经典难题，被OpenAI搞定了", "source": "36氪", "url": "https://36kr.com/p/3818861367198851", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "从概念到产线一：AI在工业制造领域的深水区探索| 2026AI Partner·北京亦庄AI+产业大会", "source": "36氪", "url": "https://36kr.com/p/3818903062004870", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "历史性突破，OpenAI模型搞定人类科学家80年未破难题，能发顶刊了", "source": "36氪", "url": "https://36kr.com/p/3818803831538817", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "36氪x PureblueAI清蓝战略合作启动仪式暨《2026消费品牌AI推荐力名册》发布 | 2026 AI Partner·北京亦庄AI+产业大会", "source": "36氪", "url": "https://36kr.com/p/3818877539091333", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "一场卧底30天的调查发现：AI正在奖励最会造假的人", "source": "36氪", "url": "https://36kr.com/p/3818697187958784", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "开场致辞 建设“全域人工智能之城” | 2026AI Partner·北京亦庄AI+产业大会", "source": "36氪", "url": "https://36kr.com/p/3818784445465731", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "菲尔兹奖得主都看懵了：OpenAI非数学模型首次自主突破80年未解数学难题", "source": "36氪", "url": "https://36kr.com/p/3818706603017094", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "99%的作业都是AI写的：当代名校生眼里，大学还剩下什么？", "source": "36氪", "url": "https://36kr.com/p/3818581451530501", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "OpenAI彻底震撼数学界，80年核心猜想被破解，菲尔兹奖得主惊呼坐不稳", "source": "36氪", "url": "https://36kr.com/p/3818728450835589", "date": "2026-05-22", "content": "", "category": "industry", "sector": "ai_app"}, {"title": "通信行业投资策略：光与液冷齐舞，空天地AIDC算力共振", "source": "开源证券", "url": "https://data.eastmoney.com/report/zw_industry.jshtml?infocode=AP202605221822672724", "date": "2026-05-22", "content": "", "category": "research", "sector": "ai_app"}, {"title": "低空经济周报（第20周）：适航审定司就8部适航审定文件草案公开征求意见", "source": "金元证券", "url": "https://data.eastmoney.com/report/zw_industry.jshtml?infocode=AP202605221822670733", "date": "2026-05-22", "content": "", "category": "research", "sector": "ai_app"}, {"title": "计算机行业周评：阿里大幅上调AI资本开支", "source": "金元证券", "url": "https://data.eastmoney.com/report/zw_industry.jshtml?infocode=AP202605221822670725", "date": "2026-05-22", "content": "", "category": "research", "sector": "ai_app"}, {"title": "三个皮匠报告 - AI产业链相关研报", "source": "三个皮匠报告", "url": "https://www.sgpjbg.com/search.html?kw=AI", "date": "2026-05-22", "content": "点击查看三个皮匠报告网站上的AI相关研报", "category": "research", "sector": "ai_app"}], "physical_ai": [{"title": "为了还原具身智能科研市场的全貌，我们找了多个头部高校聊聊", "source": "36氪", "url": "https://36kr.com/p/3818909512687875", "date": "2026-05-22", "content": "", "category": "industry", "sector": "physical_ai"}, {"title": "城市级AI服务：从试点到常态化，机器人的实景作战与规模化落地| 2026AI Partner·北京亦庄AI+产业大会", "source": "36氪", "url": "https://36kr.com/p/3818889074557829", "date": "2026-05-22", "content": "", "category": "industry", "sector": "physical_ai"}, {"title": "华为“1 号员工”创业，复制大疆模式造机器人", "source": "36氪", "url": "https://36kr.com/p/3818735041028353", "date": "2026-05-22", "content": "", "category": "industry", "sector": "physical_ai"}, {"title": "机器人“顶流”直播火了，连续工作七天不出错", "source": "36氪", "url": "https://36kr.com/p/3818728973141121", "date": "2026-05-22", "content": "", "category": "industry", "sector": "physical_ai"}, {"title": "人形机器人概念反复活跃 埃夫特涨超12%", "source": "财联社", "url": "https://www.cls.cn/detail/2378666", "date": "2026-05-22", "content": "【人形机器人概念反复活跃 埃夫特涨超12%】财联社5月22日电，人形机器人概念反复活跃，埃夫特涨超12%，此前和泰机电涨停，奥比中光、大洋电机、巨轮智能、五洲新春、绿的谐波、长盛轴承跟涨。消息面上，特斯拉方面宣布，随着特斯拉ModelS/X在加州弗里蒙特工厂下线，这两款车型正式退役。这里的ModelS/X生产线将在4个月内完成拆除与重构，转型为特斯拉人形机器人专用生产线，规划年产能达100万台。", "category": "industry", "sector": "physical_ai"}]}, "policy": [{"title": "新石器NewClaw：AI一体化解决方案，零门槛当无人车指挥官| 2026AI Partner·北京亦庄AI+产业大会", "source": "36氪", "url": "https://36kr.com/p/3818927367046018", "date": "2026-05-22", "content": "", "category": "policy", "sector": "ai_app"}, {"title": "城市级AI服务：从试点到常态化，机器人的实景作战与规模化落地| 2026AI Partner·北京亦庄AI+产业大会", "source": "36氪", "url": "https://36kr.com/p/3818889074557829", "date": "2026-05-22", "content": "", "category": "policy", "sector": "physical_ai"}, {"title": "低空经济周报（第20周）：适航审定司就8部适航审定文件草案公开征求意见", "source": "金元证券", "url": "https://data.eastmoney.com/report/zw_industry.jshtml?infocode=AP202605221822670733", "date": "2026-05-22", "content": "", "category": "policy", "sector": "ai_app"}], "research_highlights": [], "company_updates": {"computing": [{"name": "华为", "event": "华为“1 号员工”创业，复制大疆模式造机器人", "date": "2026-05-22", "url": "https://36kr.com/p/3818735041028353", "source": "36氪"}, {"name": "AMD", "event": "财联社5月22日电，AMD首席执行官表示，现在看到的是AI不仅进入推理阶段，而且确实可以完成智能化的任务。", "date": "2026-05-22", "url": "https://www.cls.cn/detail/2378665", "source": "财联社"}], "ai_app": [{"name": "谷歌", "event": "AI投毒终于有得治了，谷歌对GEO重拳出击", "date": "2026-05-22", "url": "https://36kr.com/p/3819133473378439", "source": "36氪"}, {"name": "OpenAI", "event": "断供OpenAI，Anthropic买下全球1/4开发者都在用的工具商", "date": "2026-05-22", "url": "https://36kr.com/p/3818940869280643", "source": "36氪"}, {"name": "OpenAI", "event": "AI首次证明数学核心猜想：80年的经典难题，被OpenAI搞定了", "date": "2026-05-22", "url": "https://36kr.com/p/3818861367198851", "source": "36氪"}, {"name": "OpenAI", "event": "历史性突破，OpenAI模型搞定人类科学家80年未破难题，能发顶刊了", "date": "2026-05-22", "url": "https://36kr.com/p/3818803831538817", "source": "36氪"}, {"name": "OpenAI", "event": "菲尔兹奖得主都看懵了：OpenAI非数学模型首次自主突破80年未解数学难题", "date": "2026-05-22", "url": "https://36kr.com/p/3818706603017094", "source": "36氪"}, {"name": "OpenAI", "event": "OpenAI彻底震撼数学界，80年核心猜想被破解，菲尔兹奖得主惊呼坐不稳", "date": "2026-05-22", "url": "https://36kr.com/p/3818728450835589", "source": "36氪"}], "physical_ai": [{"name": "特斯拉", "event": "人形机器人概念反复活跃 埃夫特涨超12%", "date": "2026-05-22", "url": "https://www.cls.cn/detail/2378666", "source": "财联社"}]}};
+/* 投资·AI产业链每日情报看板 - 前端逻辑 */
+
+const SECTOR_NAMES = {
+    computing: "算力与国产替代",
+    ai_app: "AI应用",
+    physical_ai: "物理AI",
+    funding: "投融资",
+};
+
+const SECTOR_ICONS = {
+    computing: "⚡",
+    ai_app: "🧠",
+    physical_ai: "🤖",
+    funding: "💰",
+};
+
+let currentData = null;
+let currentNewsSector = "all";
+let autoRefreshTimer = null;
+const AUTO_REFRESH_INTERVAL = 30 * 60 * 1000;
+const LOCAL_SERVER = "http://localhost:8199";
+
+function isLocalServer() {
+    return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+}
+
+// ====== 数据加载 ======
+
+async function loadData(date) {
+    if (!date && typeof EMBEDDED_DATA !== "undefined") { currentData = EMBEDDED_DATA; renderAll(EMBEDDED_DATA); return EMBEDDED_DATA; }
+    // 优先使用嵌入数据（自包含HTML）
+    if (!date && typeof EMBEDDED_DATA !== "undefined") {
+        currentData = EMBEDDED_DATA;
+        renderAll(EMBEDDED_DATA);
+        return EMBEDDED_DATA;
+    }
+    try {
+        let url = "data/latest.json";
+        if (date) {
+            url = `data/history/${date}.json`;
+        }
+        const resp = await fetch(url + "?t=" + Date.now());
+        if (!resp.ok) throw new Error("Not found");
+        const data = await resp.json();
+        currentData = data;
+        renderAll(data);
+        return data;
+    } catch (e) {
+        console.error("Load data failed:", e);
+        // 如果在线模式加载失败，尝试回退嵌入数据
+        if (!date && typeof EMBEDDED_DATA !== "undefined") {
+            currentData = EMBEDDED_DATA;
+            renderAll(EMBEDDED_DATA);
+            showToast("网络加载失败，已显示缓存数据");
+            return EMBEDDED_DATA;
+        }
+        renderEmpty();
+        return null;
+    }
+}
+
+// ====== 渲染 ======
+
+function renderAll(data) {
+    renderHeader(data);
+    renderSummary(data);
+    renderSectorGrid(data);
+    renderKeywords(data);
+    renderNews(data);
+    renderPolicy(data);
+    renderResearch(data);
+    renderCompany(data);
+    renderFunding(data);
+}
+
+function renderHeader(data) {
+    const dateEl = document.getElementById("headerDate");
+    dateEl.textContent = `${data.date} ${data.updated_at ? "· 更新于 " + data.updated_at : ""}`;
+}
+
+function renderSummary(data) {
+    document.getElementById("dailySummary").innerHTML =
+        `<p class="summary-text">${escapeHtml(data.daily_summary || "暂无摘要")}</p>`;
+
+    const insightEl = document.getElementById("investmentInsight");
+    if (data.investment_insight) {
+        insightEl.style.display = "block";
+        document.getElementById("insightText").textContent = data.investment_insight;
+    }
+
+    const eventsEl = document.getElementById("keyEvents");
+    if (data.key_events && data.key_events.length > 0) {
+        eventsEl.style.display = "block";
+        document.getElementById("eventsList").innerHTML = data.key_events
+            .map((e) => `<li>${escapeHtml(e)}</li>`)
+            .join("");
+    }
+}
+
+function renderSectorGrid(data) {
+    const news = data.news || {};
+    const maxCount = Math.max(
+        1,
+        ...Object.keys(SECTOR_NAMES)
+            .filter((k) => k !== "funding")
+            .map((k) => (news[k] || []).length)
+    );
+
+    Object.keys(SECTOR_NAMES)
+        .filter((k) => k !== "funding")
+        .forEach((sector) => {
+            const count = (news[sector] || []).length;
+            const countEl = document.getElementById("count-" + sector);
+            const barEl = document.getElementById("bar-" + sector);
+            if (countEl) countEl.textContent = count + " 条";
+            if (barEl) barEl.style.width = (count / maxCount) * 100 + "%";
+        });
+
+    // 赛道摘要
+    document.querySelectorAll(".sector-card").forEach((card) => {
+        const sector = card.dataset.sector;
+        card.addEventListener("click", () => {
+            switchToNewsTab(sector);
+        });
+        const summary = (data.sector_summaries || {})[sector];
+        if (summary) {
+            card.title = summary;
+        }
+    });
+}
+
+function renderKeywords(data) {
+    const container = document.getElementById("keywordsContainer");
+    const keywords = data.keywords || [];
+    if (!keywords.length) {
+        container.innerHTML = '<div class="empty-state">暂无关键词数据</div>';
+        return;
+    }
+    container.innerHTML = keywords
+        .map((kw) => {
+            const weightClass = kw.weight >= 5 ? "keyword-weight-5" : kw.weight >= 4 ? "keyword-weight-4" : "";
+            const trendClass =
+                kw.trend === "up"
+                    ? "trend-up"
+                    : kw.trend === "down"
+                      ? "trend-down"
+                      : "trend-stable";
+            const trendIcon = kw.trend === "up" ? "▲" : kw.trend === "down" ? "▼" : "━";
+            return `<span class="keyword-tag ${weightClass}" data-keyword="${escapeAttr(kw.word)}" data-sector="${kw.sector}" title="点击查看「${escapeHtml(kw.word)}」相关新闻">
+                ${escapeHtml(kw.word)}
+                <span class="${trendClass}">${trendIcon}</span>
+            </span>`;
+        })
+        .join("");
+
+    // 关键词点击 -> 跳转到对应赛道的新闻并筛选含该关键词的新闻
+    container.querySelectorAll(".keyword-tag").forEach((tag) => {
+        tag.style.cursor = "pointer";
+        tag.addEventListener("click", () => {
+            const sector = tag.dataset.sector;
+            const keyword = tag.dataset.keyword;
+            if (sector) {
+                switchToNewsTab(sector);
+                // 滚动到新闻区域
+                const newsSection = document.querySelector(".main-content");
+                if (newsSection) {
+                    newsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+                // 高亮含关键词的新闻
+                setTimeout(() => {
+                    document.querySelectorAll(".news-item").forEach((item) => {
+                        const titleEl = item.querySelector(".news-item-title");
+                        if (titleEl && titleEl.textContent.toLowerCase().includes(keyword.toLowerCase())) {
+                            item.style.background = "rgba(49, 130, 206, 0.12)";
+                            item.style.borderColor = "var(--accent-blue)";
+                        } else {
+                            item.style.background = "";
+                            item.style.borderColor = "";
+                        }
+                    });
+                }, 100);
+            }
+        });
+    });
+}
+
+function renderNews(data) {
+    const news = data.news || {};
+
+    // 渲染赛道子Tab
+    const tabsContainer = document.getElementById("newsSectorTabs");
+    const sectors = ["all", ...Object.keys(SECTOR_NAMES).filter((k) => k !== "funding")];
+    tabsContainer.innerHTML = sectors
+        .map(
+            (s) =>
+                `<button class="news-sector-tab ${s === currentNewsSector ? "active" : ""}" data-sector="${s}">
+            ${s === "all" ? "全部" : SECTOR_ICONS[s] + " " + SECTOR_NAMES[s]}
+        </button>`
+        )
+        .join("");
+
+    tabsContainer.querySelectorAll(".news-sector-tab").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            currentNewsSector = btn.dataset.sector;
+            tabsContainer.querySelectorAll(".news-sector-tab").forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            renderNewsList(news);
+        });
+    });
+
+    renderNewsList(news);
+}
+
+function renderNewsList(news) {
+    const listEl = document.getElementById("newsList");
+    let items = [];
+
+    if (currentNewsSector === "all") {
+        Object.keys(SECTOR_NAMES)
+            .filter((k) => k !== "funding")
+            .forEach((sector) => {
+                (news[sector] || []).forEach((n) => items.push({ ...n, sector }));
+            });
+    } else {
+        items = (news[currentNewsSector] || []).map((n) => ({
+            ...n,
+            sector: currentNewsSector,
+        }));
+    }
+
+    if (!items.length) {
+        listEl.innerHTML = '<div class="empty-state">暂无新闻数据</div>';
+        return;
+    }
+
+    listEl.innerHTML = items
+        .slice(0, 50)
+        .map(
+            (item) => `
+        <div class="news-item">
+            <div class="news-item-source">${escapeHtml(item.source)}</div>
+            <div class="news-item-body">
+                <a class="news-item-title" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">
+                    ${escapeHtml(item.title)}
+                </a>
+                <div class="news-item-meta">
+                    <span class="news-item-sector">${SECTOR_NAMES[item.sector] || item.sector}</span>
+                    <span>${escapeHtml(item.date || "")}</span>
+                </div>
+            </div>
+        </div>
+    `
+        )
+        .join("");
+}
+
+function renderPolicy(data) {
+    const listEl = document.getElementById("policyList");
+    const items = data.policy || [];
+    if (!items.length) {
+        listEl.innerHTML = '<div class="empty-state">暂无政策数据</div>';
+        return;
+    }
+    listEl.innerHTML = items
+        .map(
+            (item) => `
+        <div class="news-item">
+            <div class="news-item-source">${escapeHtml(item.source)}</div>
+            <div class="news-item-body">
+                <a class="news-item-title" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">
+                    ${escapeHtml(item.title)}
+                </a>
+                <div class="news-item-meta">
+                    <span class="news-item-sector">${SECTOR_NAMES[item.sector] || "政策"}</span>
+                    <span>${escapeHtml(item.date || "")}</span>
+                </div>
+            </div>
+        </div>
+    `
+        )
+        .join("");
+}
+
+function renderResearch(data) {
+    const listEl = document.getElementById("researchList");
+    const highlights = data.research_highlights || [];
+    const researchNews = [];
+    (data.news || {});
+    Object.values(data.news || {}).forEach((items) => {
+        items.forEach((n) => {
+            if (n.category === "research") researchNews.push(n);
+        });
+    });
+
+    if (!highlights.length && !researchNews.length) {
+        listEl.innerHTML = '<div class="empty-state">暂无研报数据</div>';
+        return;
+    }
+
+    let html = "";
+
+    // AI解读的研报
+    if (highlights.length) {
+        html += highlights
+            .map(
+                (r) => `
+            <div class="research-card">
+                <div class="research-card-header">
+                    <div class="research-card-title">${escapeHtml(r.title)}</div>
+                    <div class="research-card-source">${escapeHtml(r.source)}</div>
+                </div>
+                ${r.summary ? `<div class="research-card-summary">${escapeHtml(r.summary)}</div>` : ""}
+                ${r.key_point ? `<div class="research-card-point">💡 ${escapeHtml(r.key_point)}</div>` : ""}
+            </div>
+        `
+            )
+            .join("");
+    }
+
+    // 普通研报列表
+    if (researchNews.length) {
+        html += researchNews
+            .filter((n) => !highlights.some((h) => h.title === n.title))
+            .slice(0, 10)
+            .map(
+                (item) => `
+            <div class="news-item">
+                <div class="news-item-source">${escapeHtml(item.source)}</div>
+                <div class="news-item-body">
+                    <a class="news-item-title" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">
+                        ${escapeHtml(item.title)}
+                    </a>
+                    <div class="news-item-meta">
+                        <span class="news-item-sector">${SECTOR_NAMES[item.sector] || "研报"}</span>
+                        <span>${escapeHtml(item.date || "")}</span>
+                    </div>
+                </div>
+            </div>
+        `
+            )
+            .join("");
+    }
+
+    listEl.innerHTML = html;
+}
+
+function renderCompany(data) {
+    const gridEl = document.getElementById("companyGrid");
+    const updates = data.company_updates || {};
+    const sectorNames = SECTOR_NAMES;
+
+    const hasData = Object.values(updates).some((v) => v && v.length > 0);
+    if (!hasData) {
+        gridEl.innerHTML = '<div class="empty-state">暂无公司动态数据</div>';
+        return;
+    }
+
+    gridEl.innerHTML = Object.entries(updates)
+        .filter(([, events]) => events && events.length > 0)
+        .map(
+            ([sector, events]) => `
+        <div class="company-sector-group">
+            <div class="company-sector-title">
+                ${SECTOR_ICONS[sector] || ""} ${sectorNames[sector] || sector}
+            </div>
+            <div class="company-events">
+                ${events
+                    .slice(0, 5)
+                    .map(
+                        (e) => `
+                    <div class="company-event">
+                        <div class="company-event-name">${escapeHtml(e.name)}</div>
+                        <div class="company-event-text">
+                            ${e.url ? `<a href="${escapeAttr(e.url)}" target="_blank" rel="noopener" style="color:var(--text-secondary);text-decoration:none;">${escapeHtml(e.event)}</a>` : escapeHtml(e.event)}
+                        </div>
+                        <div class="company-event-date">${escapeHtml(e.date || "")}</div>
+                    </div>
+                `
+                    )
+                    .join("")}
+            </div>
+        </div>
+    `
+        )
+        .join("");
+}
+
+function renderFunding(data) {
+    const listEl = document.getElementById("fundingList");
+    const items = (data.news || {}).funding || [];
+    if (!items.length) {
+        listEl.innerHTML = '<div class="empty-state">暂无投融资数据</div>';
+        return;
+    }
+    listEl.innerHTML = items
+        .map(
+            (item) => `
+        <div class="news-item">
+            <div class="news-item-source">${escapeHtml(item.source)}</div>
+            <div class="news-item-body">
+                <a class="news-item-title" href="${escapeAttr(item.url)}" target="_blank" rel="noopener">
+                    ${escapeHtml(item.title)}
+                </a>
+                <div class="news-item-meta">
+                    <span>${escapeHtml(item.date || "")}</span>
+                </div>
+            </div>
+        </div>
+    `
+        )
+        .join("");
+}
+
+function renderEmpty() {
+    document.getElementById("dailySummary").innerHTML =
+        '<div class="empty-state">暂无数据，请先运行爬虫: python scraper/main.py</div>';
+    document.getElementById("headerDate").textContent = "暂无数据";
+}
+
+// ====== Tab 切换 ======
+
+function initTabs() {
+    const tabs = document.querySelectorAll(".tab");
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            tabs.forEach((t) => t.classList.remove("active"));
+            tab.classList.add("active");
+            document.querySelectorAll(".tab-content").forEach((c) => c.classList.remove("active"));
+            const target = document.getElementById("tab-" + tab.dataset.tab);
+            if (target) target.classList.add("active");
+        });
+    });
+}
+
+function switchToNewsTab(sector) {
+    // 切换到新闻流tab
+    document.querySelectorAll(".tab").forEach((t) => t.classList.remove("active"));
+    document.querySelector('.tab[data-tab="news"]').classList.add("active");
+    document.querySelectorAll(".tab-content").forEach((c) => c.classList.remove("active"));
+    document.getElementById("tab-news").classList.add("active");
+
+    // 切换到对应赛道
+    currentNewsSector = sector;
+    document.querySelectorAll(".news-sector-tab").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.sector === sector);
+    });
+    if (currentData) {
+        renderNewsList(currentData.news || {});
+    }
+}
+
+// ====== 历史回顾 ======
+
+function initHistory() {
+    const modal = document.getElementById("historyModal");
+    const btnHistory = document.getElementById("btnHistory");
+    const btnClose = document.getElementById("modalClose");
+
+    btnHistory.addEventListener("click", () => {
+        modal.style.display = "flex";
+        loadHistoryList();
+    });
+    btnClose.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.style.display = "none";
+    });
+}
+
+async function loadHistoryList() {
+    const listEl = document.getElementById("historyList");
+    listEl.innerHTML = '<div class="loading"><div class="loading-spinner"></div></div>';
+
+    // 尝试加载最近7天的历史
+    const dates = [];
+    const today = new Date();
+    for (let i = 0; i < 14; i++) {
+        const d = new Date(today);
+        d.setDate(d.getDate() - i);
+        dates.push(d.toISOString().slice(0, 10));
+    }
+
+    const items = [];
+    for (const date of dates) {
+        try {
+            const resp = await fetch(`data/history/${date}.json`);
+            if (resp.ok) {
+                const data = await resp.json();
+                const totalNews = Object.values(data.news || {}).reduce(
+                    (sum, arr) => sum + arr.length,
+                    0
+                );
+                items.push({ date, count: totalNews });
+            }
+        } catch {
+            // skip
+        }
+    }
+
+    if (!items.length) {
+        listEl.innerHTML = '<div class="empty-state">暂无历史数据</div>';
+        return;
+    }
+
+    listEl.innerHTML = items
+        .map(
+            (item) => `
+        <div class="history-item" data-date="${item.date}">
+            <div class="history-date">${item.date}</div>
+            <div class="history-count">${item.count} 条新闻</div>
+        </div>
+    `
+        )
+        .join("");
+
+    listEl.querySelectorAll(".history-item").forEach((el) => {
+        el.addEventListener("click", () => {
+            loadData(el.dataset.date);
+            document.getElementById("historyModal").style.display = "none";
+        });
+    });
+}
+
+// ====== 刷新 ======
+
+function initRefresh() {
+    const btnRefresh = document.getElementById("btnRefresh");
+    if (!btnRefresh) return;
+
+    btnRefresh.addEventListener("click", () => {
+        triggerRefresh();
+    });
+}
+
+async function triggerRefresh() {
+    const btnRefresh = document.getElementById("btnRefresh");
+    if (!btnRefresh) return;
+
+    btnRefresh.classList.add("loading");
+    btnRefresh.textContent = "🔄 刷新中...";
+
+    try {
+        if (isLocalServer()) {
+            // 本地模式：尝试触发爬虫
+            let serverAvailable = false;
+            try {
+                const resp = await fetch(LOCAL_SERVER + "/api/refresh", {
+                    signal: AbortSignal.timeout(5000),
+                });
+                if (resp.ok) {
+                    serverAvailable = true;
+                    const result = await resp.json();
+                    if (result.status === "already_running") {
+                        showToast("爬虫正在运行中，请稍候...");
+                    } else {
+                        showToast("数据刷新已启动，等待爬虫完成...");
+                        await pollScraperStatus();
+                    }
+                }
+            } catch {
+                serverAvailable = false;
+            }
+
+            if (serverAvailable) {
+                await loadData();
+                showToast("数据已更新至最新！");
+            } else {
+                await loadData();
+                showToast("已加载最新数据（本地服务器未启动，无法触发爬虫）");
+            }
+        } else {
+            // 线上模式：直接重新加载JSON
+            await loadData();
+            showToast("数据已刷新");
+        }
+    } catch (e) {
+        console.error("Refresh failed:", e);
+        showToast("刷新失败，请稍后重试");
+    } finally {
+        btnRefresh.classList.remove("loading");
+        btnRefresh.textContent = "🔄 刷新数据";
+    }
+}
+
+async function pollScraperStatus() {
+    const maxWait = 180;
+    const interval = 5000;
+    let elapsed = 0;
+
+    while (elapsed < maxWait * 1000) {
+        try {
+            const resp = await fetch(LOCAL_SERVER + "/api/status", {
+                signal: AbortSignal.timeout(5000),
+            });
+            if (resp.ok) {
+                const status = await resp.json();
+                if (!status.running) {
+                    showToast(status.last_result === "success" ? "爬虫已完成，正在加载新数据..." : "爬虫运行结束，但可能出错");
+                    return;
+                }
+            }
+        } catch {
+            return;
+        }
+        await new Promise((r) => setTimeout(r, interval));
+        elapsed += interval;
+    }
+    showToast("等待超时，请稍后手动刷新");
+}
+
+function showToast(text) {
+    const toast = document.getElementById("refreshToast");
+    const toastText = document.getElementById("refreshToastText");
+    if (!toast || !toastText) return;
+    toastText.textContent = text;
+    toast.style.display = "block";
+    toast.style.opacity = "1";
+    setTimeout(() => {
+        toast.style.opacity = "0";
+        setTimeout(() => {
+            toast.style.display = "none";
+        }, 300);
+    }, 3000);
+}
+
+function startAutoRefresh() {
+    if (autoRefreshTimer) clearInterval(autoRefreshTimer);
+    autoRefreshTimer = setInterval(() => {
+        loadData();
+    }, AUTO_REFRESH_INTERVAL);
+}
+
+// ====== 工具函数 ======
+
+function escapeHtml(str) {
+    if (!str) return "";
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+function escapeAttr(str) {
+    if (!str) return "";
+    return str.replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
+// ====== 初始化 ======
+
+document.addEventListener("DOMContentLoaded", () => {
+    initTabs();
+    initHistory();
+    initRefresh();
+    loadData();
+    startAutoRefresh();
+});
+
+</script>
+</body>
+</html>

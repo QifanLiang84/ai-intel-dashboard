@@ -1,0 +1,61 @@
+{
+  "date": "2026-05-22",
+  "keywords": [
+    {
+      "word": "人形机器人",
+      "sector": "physical_ai",
+      "count": 5,
+      "weight": 5,
+      "trend": "up"
+    },
+    {
+      "word": "算力",
+      "sector": "computing",
+      "count": 2,
+      "weight": 2,
+      "trend": "stable"
+    },
+    {
+      "word": "服务器",
+      "sector": "computing",
+      "count": 1,
+      "weight": 1,
+      "trend": "stable"
+    },
+    {
+      "word": "具身智能",
+      "sector": "physical_ai",
+      "count": 1,
+      "weight": 1,
+      "trend": "stable"
+    },
+    {
+      "word": "半导体",
+      "sector": "computing",
+      "count": 1,
+      "weight": 1,
+      "trend": "up"
+    },
+    {
+      "word": "液冷",
+      "sector": "computing",
+      "count": 1,
+      "weight": 1,
+      "trend": "stable"
+    },
+    {
+      "word": "IDC",
+      "sector": "computing",
+      "count": 1,
+      "weight": 1,
+      "trend": "stable"
+    },
+    {
+      "word": "低空经济",
+      "sector": "ai_app",
+      "count": 1,
+      "weight": 1,
+      "trend": "stable"
+    }
+  ]
+}
