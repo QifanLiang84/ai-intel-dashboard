@@ -2,15 +2,64 @@
   "date": "2026-06-02",
   "keywords": [
     {
+      "word": "芯片",
+      "sector": "computing",
+      "count": 5,
+      "weight": 5,
+      "trend": "up"
+    },
+    {
       "word": "人形机器人",
       "sector": "physical_ai",
-      "count": 6,
+      "count": 16,
       "weight": 5,
+      "trend": "up"
+    },
+    {
+      "word": "数据中心",
+      "sector": "computing",
+      "count": 4,
+      "weight": 4,
+      "trend": "up"
+    },
+    {
+      "word": "算力",
+      "sector": "computing",
+      "count": 4,
+      "weight": 4,
+      "trend": "up"
+    },
+    {
+      "word": "半导体",
+      "sector": "computing",
+      "count": 3,
+      "weight": 3,
+      "trend": "up"
+    },
+    {
+      "word": "大模型",
+      "sector": "ai_app",
+      "count": 1,
+      "weight": 1,
       "trend": "up"
     },
     {
       "word": "自动驾驶",
       "sector": "physical_ai",
+      "count": 1,
+      "weight": 1,
+      "trend": "stable"
+    },
+    {
+      "word": "物理AI",
+      "sector": "physical_ai",
+      "count": 1,
+      "weight": 1,
+      "trend": "up"
+    },
+    {
+      "word": "GPT",
+      "sector": "ai_app",
       "count": 1,
       "weight": 1,
       "trend": "up"
